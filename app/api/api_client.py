@@ -10,7 +10,7 @@ class ApiClient(BaseRequests):
     def login(self):
         """Method to execute login"""
         r = self.get(Urls.LOGIN,
-                     headers={'Authorization': 'Basic bWFpbGludGVzdEB1a3IubmV0Om1haWxpbnRlc3RAdWtyLm5ldA=='})
+                     headers={'Authorization': f"Basic == {Config.TOKEN_}"})
         self.token = r.json().get('token')
         return self.token
 
