@@ -15,16 +15,16 @@ class ApiClient(BaseRequests):
         self.token = r.json().get('token')
         return self.token
 
-    def get_root_folder(self, token):
+    def get_root_folder(self):
         """Method to get root folder"""
         r = self.get(Urls.ROOT_FOLDER,
-                     headers={'x-token': token})
+                     headers={'x-token': self.token})
         return r.status_code
 
-    def get_specific_folder(self, token):
+    def get_specific_folder(self):
         """Method to get specific folder"""
         r = self.get(Urls.SPECIFIC_FOLDER,
-                     headers={'x-token': token})
+                     headers={'x-token': self.token})
         return r.status_code
 
     def get_count(self, token):
