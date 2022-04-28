@@ -21,32 +21,33 @@ class ApiClient(BaseRequests):
                      headers={'x-token': token})
         return r.status_code
 
-    def get_specific_folder(self, token):
+    def get_specific_folder(self, token, folder_id):
         """Method to get specific folder"""
         r = self.get(Urls.SPECIFIC_FOLDER,
+                     params={'folder_id': folder_id},
                      headers={'x-token': token})
-        return r.status_code
-
-    def get_count(self, token):
+        return r.json()
+    
+    def get_files_count(self, token):
         """Method to get count folder"""
         r = self.get(Urls.FILES_COUNT_URL,
                      headers={'x-token': token})
         return r.json()
 
-    def get_runs(self, token):
+    def get_runs(self, file_id, token):
         """Method to get runs requests"""
-        r = self.get(Urls.FILES_RESULT_URL_GET_RUN,
+        r = self.get(Urls.FILES_RESULT_URL_GET_RUN.format(file_id),
                      headers={'x-token': token})
-        return r.status_code
+        return r.json()
 
     def get_analyses(self, token):
         """Method to get analyses requests"""
         r = self.get(Urls.FILES_RESULT_URL_GET_ANALYSES,
                      headers={'x-token': token})
-        return r.status_code
+        return r.json()
 
     def get_artifacts(self, token):
         """Method to get artifacts requests"""
         r = self.get(Urls.FILES_RESULT_URL_GET_ARTIFACTS,
                      headers={'x-token': token})
-        return r.status_code
+        return r.json()
